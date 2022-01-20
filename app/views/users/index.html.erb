@@ -1,0 +1,12 @@
+<% @users.each do |user| %>
+<div>
+  <%= link_to user_path(user.id) do %>
+  <p>投稿ユーザー画像：<%= image_tag user.get_profile_image("100x100") %></p>
+
+  <% end %>
+
+  <%= user.name %>
+  <%= link_to "Show",user_path(user.id) %>
+</div>
+<% end %>
+

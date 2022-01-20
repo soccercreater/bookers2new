@@ -7,15 +7,26 @@
    <% end %>
 </div>
 
-<!-- ユーザーの投稿一覧 -->
 
-<% @books.each do |book| %>
-<div>
-  <%= link_to book_path(book.id) do %>
-    <%= image_tag book.get_image %>
-  <% end %>
-  <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image("100x100") %></p>
-  <p>名前：<%= @books.name %></p>
-  <p>自己紹介文：<%= @books.introduction %></p>
-</div>
+
+<h1>New Book</h1>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
 <% end %>
+
+  <%= form_with model: @book, local:true do |f| %>
+    <h4>画像</h4>
+      <%= f.file_field :image, accept: "image/*" %>
+    <h4>title</h4>
+      <%= f.text_field :title %>
+    <h4>opinion</h4>
+      <%= f.text_area :opinion %><br>
+    <%= f.submit 'Create Book' %>
+  <% end %>
+  
+  
