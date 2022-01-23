@@ -6,4 +6,5 @@ class Book < ApplicationRecord
               length: { minimum: 2, maximum: 20}
    validates :opinion,presence: true
 
- end
+
+end

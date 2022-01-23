@@ -4,15 +4,12 @@
 <div>
   <h3><%= @user.name %></h3>
    <p><%= image_tag @user.get_profile_image("100x100") %></p>
-  <% if @user == current_user %>
+
 
  <%= link_to edit_user_path(@user), class: "btn btn-danger" do %>
-         <i class="btn btn-outline-secondary btn-block fas fa-user-cog "></i>
+         <i class="fas fa-user-cog "></i>
        <% end %>
-
-      <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-   <% end %>
-</div>
+ </div>
 
 
 <h1>New Book</h1>
