@@ -2,7 +2,6 @@
   <a class="btn btn-outline-secondary btn-block fas fa-user-cog edit_user_50853" href="/users/50853/edit"></a>
 </div>
 <div>
-  <%= image_tag @book.get_image %>
   <p>本のタイトル：<%= @book.title %></p>
   <p>投稿ユーザー画像：<%= image_tag @book.user.get_profile_image("100x100") %></p>
   <p>感想：<%= @book.user.name %></p>
@@ -12,4 +11,5 @@
     <%= link_to "削除", book_path(@book), method: :delete %>
   <% end %>
 </div>
+
 

@@ -1,7 +1,10 @@
+
+
 <!-- ユーザーの詳細 -->
 <div>
-  <h3><%= @user.name %></h3>
   <%= image_tag @user.get_profile_image("100x100") %>
+      <h3><%= @user.name %></h3>
+      <h3><%= @user.introduction %></h3>
   <% if @user == current_user %>
       <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
    <% end %>
@@ -26,7 +29,26 @@
       <%= f.text_field :title %>
     <h4>opinion</h4>
       <%= f.text_area :opinion %><br>
-    <%= f.submit 'Create Book' %>
+    <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
+
   <% end %>
-  
-  
+
+  <% if @book.user == current_user %>
+    <%= link_to "削除", book_path(@book), method: :delete %>
+  <% end %>
+</div>
+<div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+    </div>
