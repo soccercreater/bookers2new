@@ -1,15 +1,30 @@
-<div class="row">
-  <i class="fas fa-user-cog"></i>
-</div>
+
 <div>
   <p>本のタイトル：<%= @book.title %></p>
   <p>投稿ユーザー画像：<%= image_tag @book.user.get_profile_image("100x100") %></p>
-  <p>感想：<%= @book.user.name %></p>
-  <p>投稿日：<%= @book.created_at.strftime('%Y/%m/%d') %></p>
+  <p>感想：<%= @book.body %></p>
 
   <% if @book.user == current_user %>
     <%= link_to "削除", book_path(@book), method: :delete %>
   <% end %>
 </div>
 
+<!-- ユーザーの詳細 -->
+<div>
+  <%= image_tag @book.user.get_profile_image("100x100") %>
+      <h3><%= @book.user.name %></h3>
+      <h3><%= @book.user.introduction %></h3>
+  <% if @book.user == current_user %>
+      <p><%= link_to "プロフィール編集", edit_user_path(current_user) %></p>
+   <% end %>
+</div>
 
+ <%= form_with model: @new_book, local:true do |f| %>
+    <h4>title</h4>
+      <%= f.text_field :title %>
+    <h4>body</h4>
+      <%= f.text_area :body %><br>
+    <h4></h4>
+    <%= f.submit "Create Book" %>
+
+  <% end %>

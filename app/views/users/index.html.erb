@@ -15,10 +15,10 @@
        <p><%= image_tag user.get_profile_image("100x100") %></p>
      <% end %>
    <%= user.name %>
+   <%= user.introduction %>
    <%= link_to "show",user_path(user.id) %>
     <% end %>
 
-</div>
 
 <div class="container mt-5">
     <div class="row">
