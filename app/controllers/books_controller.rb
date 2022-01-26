@@ -48,10 +48,18 @@ class BooksController < ApplicationController
     redirect_to book_path
   end
 
+  def edit
+     @book = Book.find(params[:id])
+      if @book.save
+         flash[:success] = 'Book was successfully created'
+      end
+
+  end
+
 
 
   private
    def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:title, :body,)
    end
 end

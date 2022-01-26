@@ -1,14 +1,16 @@
 
 <div>
-  <p>本のタイトル：<%= @book.title %></p>
-  <p>投稿ユーザー画像：<%= image_tag @book.user.get_profile_image("100x100") %></p>
-  <p>感想：<%= @book.body %></p>
+  <p><%= image_tag @book.user.get_profile_image("100x100") %></p>
+  <p><%= link_to "#{@book.title}",book_path(@book.id) %></p>
+  <p><%= @book.body %></p>
 
   <% if @book.user == current_user %>
-    <%= link_to "削除", books_path(@book), method: :delete %>
+    <%= link_to "edit", edit_book_path(@book.id), method: :get %>
+    <%= link_to "destroy", books_path(@book.id), method: :delete, data: {confirm: "削除しますか？"} %>
   <% end %>
 </div>
 
+<h1>User Info</h1>
 <!-- ユーザーの詳細 -->
 <div>
   <%= image_tag @book.user.get_profile_image("100x100") %>
@@ -17,6 +19,7 @@
   <% if @book.user == current_user %>
       <p><%= link_to "プロフィール編集", edit_user_path(current_user) %></p>
    <% end %>
+
 </div>
 
  <%= form_with model: @new_book, local:true do |f| %>
