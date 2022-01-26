@@ -1,42 +1,54 @@
-<h1>User Info</h1>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-md-3">
+      <h1>User Info</h1>
 
 <!-- ユーザーの詳細 -->
-<div>
-  <h3><%= @user.name %></h3>
-   <p><%= image_tag @user.get_profile_image("100x100") %></p>
+       <div>
+          <h3><%= @user.name %></h3>
+          <p><%= image_tag @user.get_profile_image("100x100") %></p>
 
 
- <%= link_to edit_user_path(@user), class: "btn btn-danger" do %>
-         <i class="fas fa-user-cog "></i>
-       <% end %>
- </div>
+          <%= link_to edit_user_path(@user), class: "btn btn-danger" do %>
+           <i class="fas fa-user-cog "></i>
+          <% end %>
+        </div>
+           <h1>New Book</h1>
+            <% if @book.errors.any? %>
+            <%= @book.errors.count %>件のエラーが発生しました
+          <ul>
+            <% @book.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+          <%= form_with model: @book,url: books_path, local:true do |f| %>
+            <h4>title</h4>
+              <%= f.text_field :title %>
+            <h4>opinion</h4>
+              <%= f.text_area :body %><br>
+            <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
+          <% end %>
+       </div>
+
+          <div class="col-md-8 offset-md-1">
+            <% @books.each do |book| %>
+          <div>
+           <%= link_to user_path(book.user_id) do %>
+            <p><%= image_tag book.user.get_profile_image("100x100") %></p>
+           <% end %>
+            <p><%= book.title %></p>
+            <p><%= book.body %></p>
+            </div>
+           <% end %>
 
 
-<h1>New Book</h1>
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @book.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+          </div>
+         </div>
+        </div>
 
-  <%= form_with model: @book,url: books_path, local:true do |f| %>
-    <h4>title</h4>
-      <%= f.text_field :title %>
-    <h4>opinion</h4>
-      <%= f.text_area :opinion %><br>
-    <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
-  <% end %>
 
-<% @books.each do |book| %>
-<div>
-  <%= link_to user_path(book.user_id) do %>
-   <p><%= image_tag book.user.get_profile_image("100x100") %></p>
-  <% end %>
 
-  <p><%= book.name %></p>
-  <p><%= book.opinion %></p>
-</div>
-<% end %>
+
+
