@@ -1,5 +1,4 @@
 class Book < ApplicationRecord
-   has_many :books, dependent: :destroy
    belongs_to :user
    has_one_attached :profile_image
 
