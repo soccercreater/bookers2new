@@ -10,7 +10,7 @@
                <i class="fas fa-user-cog "></i>
               <% end %>
             </div>
-                  <h1>New Book</h1>
+                  <h1>New book</h1>
                     <%= form_with model: @book, local:true do |f| %>
                       <h4>title</h4>
                         <%= f.text_field :title %>
@@ -38,7 +38,7 @@
                                     <% end %>
                                    <td> <%= user.name %></td>
                                    <td> <%= user.introduction %></td>
-                                   <td> <%= link_to "show",user_path(user.id) %></td>
+                                   <td> <%= link_to "Show",user_path(user.id) %></td>
                                  </tr>
                                   <% end %>
                                </tbody>

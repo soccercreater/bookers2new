@@ -8,22 +8,21 @@
              <table class="table">
                  <tr> <%= image_tag @book.user.get_profile_image("100x100") %></tr>
                  <tr>
-                     <th>neme</th>
+                     <th>name</th>
                      <th><%= @book.user.name %></th>
                 </tr>
-　　　　　　　　 <tr>
+                <tr>
                      <th>introduction</th>
                      <th><%= @book.user.introduction %></th>
                 </tr>
              </table>
                 <% if @book.user == current_user %>
-                    <p><%= link_to "プロフィール編集", edit_user_path(current_user) %></p>
-                 <% end %>
-                  <%= link_to edit_user_path(@book.user), class: "btn btn-danger" do %>
+                     <%= link_to edit_user_path(@book.user), class: "btn btn-danger" do %>
                    <i class="fas fa-user-cog "></i>
-          <% end %>
+                 <% end %>
+                <% end %>
           </div>
-              <h2>New Book</h2>
+              <h2>New book</h2>
                <%= form_with model: @new_book, local:true do |f| %>
                   <h4>Title</h4>
                     <%= f.text_field :title %>
@@ -39,11 +38,16 @@
                <table class="table table-hover table-inverse">
                <tbody>
                 <tr>
-                <td><p><%= image_tag @book.user.get_profile_image("100x100") %></p> </td>
+                <td><p><%= image_tag @book.user.get_profile_image("100x100") %></p>
+                      <br><%=link_to "#{@book.user.name}",user_path(@book.id)%></td>
                 <td><p><%= link_to "#{@book.title}",book_path(@book.id) %></p></td>
                 <td> <p><%= @book.body %></p></td>
-                <td><%= link_to 'edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
-                <td> <%= link_to "destroy",book_path(@book.id), class: "btn btn-sm btn-danger destroy_book_#{@book.id}", method: :delete,data: {confirm: "削除しますか？"} %></td>
+                  <% if @book.user == current_user %>
+                <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
+                  <% end %>
+                  <% if @book.user == current_user %>
+                <td> <%= link_to "Destroy",book_path(@book.id), class: "btn btn-sm btn-danger destroy_book_#{@book.id}", method: :delete,data: {confirm: "削除しますか？"} %></td>
+                  <% end %>
                 </td>
                 </tr>
               </tbody>
@@ -53,4 +57,10 @@
       </div>
      </div>
     </div>
-
+<div class="container mt-5">
+    <div class="row">
+      <div class="mx-auto">
+        <p>CopyRight Infratop.inc</p>
+      </div>
+    </div>
+  </div>

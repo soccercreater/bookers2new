@@ -2,7 +2,8 @@ class Book < ApplicationRecord
    belongs_to :user
    has_one_attached :profile_image
 
-   validates :title, presence: true
+   validates :title, presence: true,
+       length: { minimum: 2}
    validates :body,presence: true,
               length: { maximum: 200}
  def get_profile_image(size)
