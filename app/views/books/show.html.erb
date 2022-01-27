@@ -19,14 +19,18 @@
                 <% if @book.user == current_user %>
                     <p><%= link_to "プロフィール編集", edit_user_path(current_user) %></p>
                  <% end %>
+                  <%= link_to edit_user_path(@book.user), class: "btn btn-danger" do %>
+                   <i class="fas fa-user-cog "></i>
+          <% end %>
           </div>
               <h2>New Book</h2>
                <%= form_with model: @new_book, local:true do |f| %>
-                  <h4>title</h4>
+                  <h4>Title</h4>
                     <%= f.text_field :title %>
-                  <h4>body</h4>
+                  <h4>Opinion</h4>
                     <%= f.text_area :body %><br>
                   <h4></h4>
+
                   <%= f.submit "Create Book" %>
                 <% end %>
       </div>
@@ -39,7 +43,7 @@
                 <td><p><%= link_to "#{@book.title}",book_path(@book.id) %></p></td>
                 <td> <p><%= @book.body %></p></td>
                 <td><%= link_to 'edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
-                <td> <%= link_to "destroy",book_path(@book.id), class: "btn btn-sm btn-danger destroy_book_#{@book.id}", data: {confirm: "削除しますか？"} %></td>
+                <td> <%= link_to "destroy",book_path(@book.id), class: "btn btn-sm btn-danger destroy_book_#{@book.id}", method: :delete,data: {confirm: "削除しますか？"} %></td>
                 </td>
                 </tr>
               </tbody>
