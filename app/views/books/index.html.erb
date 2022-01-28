@@ -4,12 +4,26 @@
       <h1>User info</h1>
 <!-- ユーザーの詳細 -->
         <div>
-          <p><%= image_tag @user.get_profile_image("100x100") %></p>
-          <h4><%= @user.name %></h4>
-          <h4><%= @user.introduction%></h4>
-          <%= link_to edit_user_path(@user), class: "btn btn-danger" do %>
-           <i class="fas fa-user-cog "></i>
-          <% end %>
+             <table class="table">
+                  <tr><%= image_tag @user.get_profile_image("100x100") %></tr>
+                  <tr>
+                    <td>name</td>
+                    <td><%= @user.name %></td>
+                  </tr>
+                  <tr>
+                    <td>introduction</td>
+                    <td><%= @user.introduction%></td>
+                  </tr>
+             </table>
+                  <%= link_to edit_user_path(@user), class: "btn btn-danger" do %>
+                   <i class="fas fa-user-cog "></i>
+                  <% end %>
+
+                   <% if @book.user == current_user %>
+                             <%= link_to edit_user_path(@book.user), class: "btn btn-danger" do %>
+                           <i class="fas fa-user-cog "></i>
+                         <% end %>
+                        <% end %>
         </div>
            <h2>New book</h2>
             <% if @book.errors.any? %>

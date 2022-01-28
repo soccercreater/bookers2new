@@ -1,14 +1,24 @@
+ <div>
+       <%= flash[:notice] %>
+      </div>
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-md-3">
-       <h1>User Info</h1>
+
+       <h1>User info</h1>
         <!-- ユーザーの詳細 -->
         <div>
-           <%= link_to user_path(@user.id) do %>
-            <%= image_tag @user.get_profile_image("100x100") %>
-           <% end %>
-           <h3><%= @user.name %></h3>
-           <h3><%= @user.introduction %></h3>
+          <table class="table">
+            <tr><%= image_tag @user.get_profile_image("100x100") %></tr>
+            <tr>
+               <th>name</th>
+               <th><%= @user.name %></th>
+            </tr>
+            <tr>
+               <th>introduction</th>
+               <th><%= @user.introduction %></th>
+            </tr>
+          </table>
              <% if @user == current_user %>
                <%= link_to edit_user_path(@user), class: "btn btn-danger" do %>
                 <i class="fas fa-user-cog "></i>
@@ -16,7 +26,7 @@
              <% end %>
              <% end %>
         </div>
-            <h1>New book</h1>
+            <h2>New book</h2>
              <% if @book.errors.any? %>
                   <%= @book.errors.count %>件のエラーが発生しました
                   <ul>

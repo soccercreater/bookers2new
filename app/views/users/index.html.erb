@@ -3,9 +3,17 @@
   <div class="col-md-3">
        <h1>User Info</h1>
             <div>
-              <p><%= image_tag @user.get_profile_image("100x100") %></p>
-              <h3><%= @user.name %></h3>
-              <h3><%= @user.introduction%></h3>
+             <table class="table">
+              <tr><%= image_tag @user.get_profile_image("100x100") %></tr>
+              <tr>
+                <th>name</th>
+                <th><%= @user.name %></th>
+              </tr>
+              <tr>
+                <th>introduction</th>
+                <th><%= @user.introduction%></th>
+              </tr>
+             </table>
               <%= link_to edit_user_path(@user), class: "btn btn-danger" do %>
                <i class="fas fa-user-cog "></i>
               <% end %>
