@@ -3,11 +3,13 @@
   <div class="row">
     <div class="col-md-3">
 
-       <h1>User info</h1>
+       <h2>User info</h2>
         <!-- ユーザーの詳細 -->
-        <div>
+        <%= image_tag @user.get_profile_image("100x100") %>
+
           <table class="table">
-            <tr><%= image_tag @user.get_profile_image("100x100") %></tr>
+           <tbody>
+            <tr></tr>
             <tr>
                <th>name</th>
                <th><%= @user.name %></th>
@@ -16,13 +18,15 @@
                <th>introduction</th>
                <th><%= @user.introduction %></th>
             </tr>
+           </tbody>
           </table>
+          <div class ="row">
+                 <%= link_to edit_user_path(@user), class: "btn btn-outline-secondary btn-block " do %>
+                  <i class=" fas fa-user-cog "></i>
 
-                 <%= link_to edit_user_path(@user), class: "btn btn-danger" do %>
-                  <i class="fas fa-user-cog "></i>
                  <% end %>
 
-        </div>
+          </div>
             <h2>New book</h2>
              <% if @book.errors.any? %>
                   <%= @book.errors.count %>件のエラーが発生しました
@@ -33,7 +37,7 @@
                   </ul>
               <% end %>
               <%= form_with model: @book, local:true do |f| %>
-                <h4>title</h4>
+                <h4>Title</h4>
                 <%= f.text_field :title %>
                 <h4>opinion</h4>
                 <%= f.text_area :body %><br>
