@@ -19,11 +19,7 @@
                    <i class="fas fa-user-cog "></i>
                   <% end %>
 
-                   <% if @book.user == current_user %>
-                             <%= link_to edit_user_path(@book.user), class: "btn btn-danger" do %>
-                           <i class="fas fa-user-cog "></i>
-                         <% end %>
-                        <% end %>
+
         </div>
            <h2>New book</h2>
             <% if @book.errors.any? %>
@@ -40,7 +36,7 @@
                   <%= f.text_field :title %>
                 <h4>opinion</h4>
                   <%= f.text_area :body %><br>
-                <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book">
+                  <%= f.submit "Create Book" , class: "btn btn-success" %>
               <% end %>
      </div>
 
@@ -57,14 +53,14 @@
                </tr>
           </thead>
           <tbody>
-            <tr> <% @books.each do |book| %>
-                <%= link_to user_path(book.user_id) do %>
-                   <td> <p><%= image_tag book.user.get_profile_image("100x100") %></p></td>
-                  <% end %>
-                  <td></td>
-                  <td><p><%= link_to "#{book.title}",book_path(book.id) %></p></td>
-                  <td><p><%= book.body %></p></td>
-
+            <tr>
+                <% @books.each do |book| %>
+                <td> <%= link_to user_path(book.user_id) do %>
+                     <%= image_tag book.user.get_profile_image("100x100") %>
+                     <% end %>
+                </td>
+                  <td><%= link_to "#{book.title}",book_path(book.id) %></td>
+                  <td><%= book.body %></td>
             </tr>
              <% end %>
          </tbody>
