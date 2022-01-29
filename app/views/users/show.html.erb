@@ -18,15 +18,10 @@
             </tr>
           </table>
 
-             <% if @user == current_user %>
                  <%= link_to edit_user_path(@user), class: "btn btn-danger" do %>
                   <i class="fas fa-user-cog "></i>
-               <% end %>
-               <% else %>
-                  <%= link_to user_path(@user), class: "btn btn-danger" do %>
-                  <i class="fas fa-user-cog "></i>
-               <% end %>
-             <% end %>
+                 <% end %>
+
         </div>
             <h2>New book</h2>
              <% if @book.errors.any? %>
